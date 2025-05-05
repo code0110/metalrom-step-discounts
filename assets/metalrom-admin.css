@@ -1,0 +1,8 @@
+#metalrom_discounts_data h3 {
+    margin-bottom: 1em;
+}
+#metalrom-discount-table th,
+#metalrom-discount-table td {
+    text-align: left;
+    padding: 8px;
+}

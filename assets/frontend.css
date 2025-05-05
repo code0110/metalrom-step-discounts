@@ -1,0 +1,51 @@
+#metalrom-step-discounts {
+    margin-top: 20px;
+}
+.metalrom-discount-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.metalrom-discount-table th,
+.metalrom-discount-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+.metalrom-discount-table .highlight {
+    background-color: #e0f7fa;
+    border: 2px solid #00acc1;
+    font-weight: bold;
+    box-shadow: 0 0 5px rgba(0, 172, 193, 0.4);
+    transition: all 0.3s ease;
+}
+.metalrom-summary-box {
+    margin-top: 12px;
+    padding: 12px;
+    background: #e8f5e9;
+    border-left: 5px solid #43a047;
+    font-weight: bold;
+    color: #2e7d32;
+}
+.metalrom-summary-box .gratuit {
+    color: green;
+    font-weight: bold;
+}
+.metalrom-discount-table tr.highlight td {
+    background-color: #e0f7fa !important;
+    border-left: 4px solid #00acc1 !important;
+    font-weight: bold;
+}
+.metalrom-discount-table .highlight td {
+    background-color: #e0f7fa !important;
+    font-weight: bold;
+    border-left: 4px solid #00acc1;
+    transition: all 0.3s ease;
+}
+.metalrom-discount-table .highlight td {
+    background-color: #e0f7fa !important;
+    border-left: 5px solid #00acc1 !important;
+    font-weight: bold;
+}
+.wd-sticky-btn.wd-sticky-btn-shown form.cart div#metalrom-step-discounts {
+    display: none !important;
+}
