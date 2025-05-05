@@ -19,7 +19,13 @@ add_action('woocommerce_product_data_panels', function() {
     echo '<div class="options_group">';
     echo '<h3>' . __('Discounturi și transport personalizat', 'metalrom-step-discounts') . '</h3>';
     echo '<table class="widefat" id="metalrom-discount-table">';
-    echo '<thead><tr><th>' . __('Cant. Min.', 'metalrom-step-discounts') . '</th><th>' . __('Unitate', 'metalrom-step-discounts') . '</th><th>' . __('Discount %', 'metalrom-step-discounts') . '</th><th>' . __('Transport (lei) fara tva', 'metalrom-step-discounts') . '</th><th></th></tr></thead><tbody>';
+    echo '<thead><tr>
+            <th>' . __('Cant. Min.', 'metalrom-step-discounts') . '</th>
+            <th>' . __('Unitate', 'metalrom-step-discounts') . '</th>
+            <th>' . __('Discount %', 'metalrom-step-discounts') . '</th>
+            <th>' . __('Transport (lei) fără TVA', 'metalrom-step-discounts') . '</th>
+            <th></th>
+        </tr></thead><tbody>';
 
     foreach ($discounts as $index => $rule) {
         echo '<tr>';
@@ -37,18 +43,24 @@ add_action('woocommerce_product_data_panels', function() {
 });
 
 add_action('woocommerce_process_product_meta', function($post_id) {
-    if (!isset($_POST['metalrom_discounts']) || !is_array($_POST['metalrom_discounts'])) return;
+    if (isset($_POST['metalrom_discounts']) && is_array($_POST['metalrom_discounts'])) {
+        $data = array_values(array_filter($_POST['metalrom_discounts'], function($row) {
+            return isset($row['qty'], $row['discount']) && $row['qty'] !== '' && $row['discount'] !== '';
+        }));
 
-    $data = array_values(array_filter($_POST['metalrom_discounts'], function($row) {
-        return isset($row['qty'], $row['discount']);
-    }));
+        foreach ($data as &$row) {
+            $row['qty'] = (int) $row['qty'];
+            $row['unit'] = sanitize_text_field($row['unit']);
+            $row['discount'] = (float) $row['discount'];
+            $row['shipping'] = isset($row['shipping']) ? (float) $row['shipping'] : 0;
+        }
 
-    foreach ($data as &$row) {
-        $row['qty'] = (int) $row['qty'];
-        $row['unit'] = sanitize_text_field($row['unit']);
-        $row['discount'] = (float) $row['discount'];
-        $row['shipping'] = isset($row['shipping']) ? (float) $row['shipping'] : 0;
+        if (!empty($data)) {
+            update_post_meta($post_id, '_metalrom_step_discounts', $data);
+        } else {
+            delete_post_meta($post_id, '_metalrom_step_discounts'); 
+        }
+    } else {
+        delete_post_meta($post_id, '_metalrom_step_discounts');
     }
-
-    update_post_meta($post_id, '_metalrom_step_discounts', $data);
 });
