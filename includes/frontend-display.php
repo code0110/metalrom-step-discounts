@@ -1,5 +1,4 @@
 <?php
-// Afișează tabelul cu praguri de discount înainte de câmpul de cantitate
 add_action('woocommerce_before_add_to_cart_quantity', function () {
     if (isset($_REQUEST['metalrom_context']) && $_REQUEST['metalrom_context'] === 'sticky') return;
 
@@ -33,7 +32,6 @@ add_action('woocommerce_before_add_to_cart_quantity', function () {
 
 
 
-// Include JS și CSS doar în pagina produsului
 add_action('wp_enqueue_scripts', function () {
     if (is_product()) {
         wp_enqueue_script('metalrom-frontend', plugin_dir_url(__FILE__) . '../assets/frontend.js', ['jquery'], '1.0.0', true);

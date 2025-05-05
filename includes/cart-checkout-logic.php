@@ -58,7 +58,6 @@ add_action('woocommerce_cart_updated', function() {
         WC()->session->__unset('shipping_for_package_0');
     }
 });
-// ✅ Servicii curieratul personalizat elimină nevoia unei metode de livrare, dar nu și adresa de livrare
 add_filter('woocommerce_cart_needs_shipping', function($needs_shipping) {
     if (function_exists('WC') && WC()->session && WC()->session->get('metalrom_use_custom_shipping')) {
         return false; // Nu mai e nevoie de metode standard de livrare
@@ -66,10 +65,8 @@ add_filter('woocommerce_cart_needs_shipping', function($needs_shipping) {
     return $needs_shipping;
 });
 
-// ✅ Păstrăm întotdeauna formularul de adresă de livrare
 add_filter('woocommerce_cart_needs_shipping_address', '__return_true');
 
-// ✅ Afișăm mențiune în locul adresei doar dacă WooCommerce crede că nu e necesară
 add_filter('woocommerce_order_get_shipping_to_display', function($address, $order) {
     if (!$order->needs_shipping()) {
         return __('- (Servicii curierat)', 'metalrom-step-discounts');
