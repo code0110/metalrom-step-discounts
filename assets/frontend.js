@@ -67,15 +67,10 @@ jQuery(function($) {
     const tvaRate = 0.19;
     const shippingWithTva = ship * (1 + tvaRate);
 
-    const msg = `
-    <strong>💯 Prag activ:</strong> ${qty} buc — <strong>${disc}%</strong> reducere<br>
-    <span style="display:inline-block;margin-top:4px;">
-        🚚 Transport: ${ship === 0
+    const msg = `<strong>✅ Prag activ:</strong> ${qty} buc — ${disc}% reducere — <br>Transport` +
+        (ship === 0
             ? '<strong style="color:green;">Gratuit</strong>'
-            : shippingWithTva.toFixed(2) + ' lei cu TVA'}
-    </span>
-`;
-
+            : shippingWithTva.toFixed(2) + ' lei');
 
     msgBox.html(msg).show();
 

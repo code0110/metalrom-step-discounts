@@ -51,7 +51,7 @@ WooCommerce plugin care permite definirea si aplicarea discounturilor progresive
 
 ## 📄 Licenta
 
-GPLv2 sau ulterior – vezi fisierul LICENSE
+GPLv2
 
 ## 🤝 Contributii
 
