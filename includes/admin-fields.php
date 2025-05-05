@@ -19,7 +19,7 @@ add_action('woocommerce_product_data_panels', function() {
     echo '<div class="options_group">';
     echo '<h3>' . __('Discounturi și transport personalizat', 'metalrom-step-discounts') . '</h3>';
     echo '<table class="widefat" id="metalrom-discount-table">';
-    echo '<thead><tr><th>' . __('Cant. Min.', 'metalrom-step-discounts') . '</th><th>' . __('Unitate', 'metalrom-step-discounts') . '</th><th>' . __('Discount %', 'metalrom-step-discounts') . '</th><th>' . __('Transport (lei)', 'metalrom-step-discounts') . '</th><th></th></tr></thead><tbody>';
+    echo '<thead><tr><th>' . __('Cant. Min.', 'metalrom-step-discounts') . '</th><th>' . __('Unitate', 'metalrom-step-discounts') . '</th><th>' . __('Discount %', 'metalrom-step-discounts') . '</th><th>' . __('Transport (lei) fara tva', 'metalrom-step-discounts') . '</th><th></th></tr></thead><tbody>';
 
     foreach ($discounts as $index => $rule) {
         echo '<tr>';

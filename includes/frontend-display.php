@@ -11,7 +11,9 @@ add_action('woocommerce_before_add_to_cart_quantity', function () {
     echo '<table class="metalrom-discount-table"><thead><tr><th>Cantitate</th><th>Discount</th><th>Transport</th></tr></thead><tbody>';
 
     foreach ($discounts as $row) {
-        $shipping = floatval($row['shipping']);
+        $tva_rate = 0.19;
+        $shipping = floatval($row['shipping']) *(1+$tva_rate);
+
         $transp = $shipping === 0.0 ? '<strong class="gratuit">Gratuit</strong>' : wc_price($shipping);
         echo '<tr class="metalrom-row" 
                 data-qty="' . esc_attr($row['qty']) . '" 
