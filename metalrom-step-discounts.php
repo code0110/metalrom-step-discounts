@@ -45,3 +45,13 @@ add_action('admin_enqueue_scripts', function($hook) {
 });
 
 
+// Inițializează metoda de livrare
+add_action('woocommerce_shipping_init', function() {
+    require_once plugin_dir_path(__FILE__) . 'includes/class-wc-shipping-metalrom.php';
+});
+
+// Înregistrează metoda
+add_filter('woocommerce_shipping_methods', function($methods) {
+    $methods['metalrom_shipping'] = 'WC_Shipping_Metalrom';
+    return $methods;
+});
